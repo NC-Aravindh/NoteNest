@@ -1,49 +1,47 @@
-*{
+* {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-body{
-  background-color:#e6f4f1;  
+body {
+  background-color: #e6f4f1;
   background-image: url("/sj-objio-XFWiZTa2Ub0-unsplash.jpg");
   background-size: cover;
   background-position: center; /* Centers the image */
-    width: 100%; 
-    min-height: 100vh;
-
+  width: 100%;
+  min-height: 100vh;
 }
 
-header{
+header {
   background-color: #94744d;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-.heading{
-  color: #FFFFFF;
+.heading {
+  color: #ffffff;
 }
 
-h1{
- margin: 0%;
- padding-top: 10px;
- padding-bottom: 10px;
- font-size: 2rem;
-
+h1 {
+  margin: 0%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 2rem;
 }
-h1,button{
+h1,
+button {
   text-align: center;
 }
 /*Input area where the user adds the new note*/
-#input-area-container{
-  position: relative;
+#input-area-container {
   margin-bottom: 1rem;
   text-align: center;
   margin-top: 100px;
-  
+  display: flex;
+  justify-content: center;
 }
-.title{
+.title {
   display: inline-block;
   padding: 1rem;
   width: 25rem;
@@ -54,7 +52,7 @@ h1,button{
   outline: none;
 }
 
-#note{
+#note {
   display: block;
   padding: 1rem;
   margin: 0 auto;
@@ -65,42 +63,39 @@ h1,button{
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 1rem 1rem;
 }
-.noteInput:focus{
+.noteInput:focus {
   background-color: rgb(229, 241, 250);
 }
 
-#add-icon{
-  left: 22rem;
-  right: 0;
+#add-icon {
   position: absolute;
-  margin: 0 auto;
-  top: 9.28rem;
   border: none;
-  outline: none;
-  font-size: 2rem;
   cursor: pointer;
   color: #94744d;
+  right: 0.1em;
+  bottom: -1.7em;
+  background: none;
+  transition: color 0.3s;
 }
 
 #add-icon:hover {
-box-shadow: #a0a8df 0 1px 10px;
-transition-duration: 0.1s;
+  color: #6c5438;
 }
 
 /*Notes section */
-.noteBox{
+.noteBox {
   display: block;
-  }
+}
 
-.note-container{
-float: left;
-width: 200px;
-margin: 20px;
-padding: 5px;
-background-color: #FFFFFF;
-border-radius:0.4rem;
-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-position: relative;
+.note-container {
+  float: left;
+  width: 200px;
+  margin: 20px;
+  padding: 5px;
+  background-color: #ffffff;
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .note-container h1 {
@@ -109,17 +104,59 @@ position: relative;
   padding-left: 0.5rem;
 }
 
-.note-container p{
+.note-container p {
   font-size: 0.9rem;
   padding: 0.5rem;
 }
 
-#delete-icon{
+#delete-icon {
   position: absolute;
-  left: 10rem;
+  right: 0.1rem;
   bottom: 0.5rem;
   cursor: pointer;
   color: #94744d;
 }
 
+#form-container {
+  position: relative;
+}
 
+@media (max-width: 767px) {
+  .title {
+    padding: 1rem;
+    width: 15rem;
+    height: 1rem;
+  }
+
+  #note {
+    width: 15rem;
+  }
+
+  .note-container {
+    float: left;
+    width: 8em;
+    margin: 0.8em;
+    padding: 0.5em;
+  }
+
+  #delete-icon {
+    /* left: 6em; */
+    bottom: 0.1em;
+    font-size: large;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .title {
+    padding: 1rem;
+    width: 18rem;
+    height: 1.5rem;
+  }
+
+  #note {
+    width: 18rem;
+  }
+  #delete-icon {
+    font-size: large;
+  }
+}

@@ -1,13 +1,10 @@
 import { useState } from "react";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 function InputNote({ onClick }) {
-
   const [inputNote, setInput] = useState({
-    title: '',
-    content: ''
+    title: "",
+    content: "",
   });
 
   function handleTitleChange(event) {
@@ -15,10 +12,9 @@ function InputNote({ onClick }) {
     setInput((prevState) => {
       return {
         ...prevState,
-        title: title
-      }
-    })
-
+        title: title,
+      };
+    });
   }
 
   function handleContentChange(event) {
@@ -26,36 +22,68 @@ function InputNote({ onClick }) {
     setInput((prevState) => {
       return {
         ...prevState,
-        content: content
-      }
-    })
+        content: content,
+      };
+    });
   }
   //After the user enters the input and adds the note. Remove the text from the
   //input area title and content
   function resetInput() {
     setInput({
-      title: '',
-      content: ''
-    })
+      title: "",
+      content: "",
+    });
   }
+  async function handleSubmit(e) {
+    e.preventDefault();
 
+    try {
+      const response = await fetch("http://localhost:5000/add", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputNote),
+      });
+    } catch (error) {
+      console.error("Failure:", error);
+    }
+  }
 
   return (
     <div id="input-area-container">
-      <input onChange={handleTitleChange} value={inputNote.title} className="title" type="text" name="title" placeholder="Title" />
-      <textarea onChange={handleContentChange} value={inputNote.content} name="note" id="note" placeholder="Take a note..." rows={5}></textarea>
-      <AddCircleIcon id='add-icon' onClick={
-        () => {
-          onClick(inputNote);
-          resetInput();
-        }
-      }
-      />
-
+      <div id="form-container">
+        <form onSubmit={handleSubmit}>
+          <input
+            onChange={handleTitleChange}
+            value={inputNote.title}
+            className="title"
+            type="text"
+            name="title"
+            placeholder="Title"
+          />
+          <textarea
+            onChange={handleContentChange}
+            value={inputNote.content}
+            name="note"
+            id="note"
+            placeholder="Take a note..."
+            rows={5}
+          ></textarea>
+          <button
+            type="submit"
+            id="add-icon"
+            onClick={() => {
+              onClick(inputNote);
+            }}
+          >
+            <AddCircleIcon style={{ fontSize: "35" }} />
+          </button>
+        </form>
+      </div>
     </div>
-
   );
-
 }
 
 export default InputNote;
