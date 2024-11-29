@@ -35,13 +35,35 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/notes", async (req, res) => {
+  const data = await db.query("SELECT * FROM usernotes");
+  res.json(data.rows);
+});
+
 app.post("/add", async (req, res) => {
-  const title = req.body.title;
-  const content = req.body.content;
-  await db.query("INSERT INTO usernotes(title,content) VALUES($1 , $2)", [
-    title,
-    content,
-  ]);
+  try {
+    const title = req.body.title;
+    const content = req.body.content;
+    await db.query("INSERT INTO usernotes(title,content) VALUES($1 , $2)", [
+      title,
+      content,
+    ]);
+    res.status(201).json({ message: "Note added successfully" });
+  } catch (error) {
+    console.error("Error adding note:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.delete("/deleteNote/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await db.query("DELETE FROM usernotes WHERE id=$1", [id]);
+    res.status(204).json({ message: "Note deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting note:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 app.listen(5000, () => {

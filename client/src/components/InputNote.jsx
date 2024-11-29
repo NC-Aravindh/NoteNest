@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-function InputNote({ onClick }) {
+function InputNote({fetchData}) {
   const [inputNote, setInput] = useState({
     title: "",
     content: "",
@@ -46,6 +46,11 @@ function InputNote({ onClick }) {
         },
         body: JSON.stringify(inputNote),
       });
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.statusText}`);
+      }
+      await fetchData(); //Fetch data from the DB after adding new note
+      resetInput();
     } catch (error) {
       console.error("Failure:", error);
     }
@@ -71,13 +76,7 @@ function InputNote({ onClick }) {
             placeholder="Take a note..."
             rows={5}
           ></textarea>
-          <button
-            type="submit"
-            id="add-icon"
-            onClick={() => {
-              onClick(inputNote);
-            }}
-          >
+          <button type="submit" id="add-icon">
             <AddCircleIcon style={{ fontSize: "35" }} />
           </button>
         </form>
