@@ -1,15 +1,14 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-function Note({ id, title, content, onDelete }) {
-  //passing the id of the note item that was deleted.
-  function sendNoteId() {
-    onDelete(id);
-  }
+import handleDelete from "../utils/handleDelete";
+import { useDispatch } from "react-redux";
 
+function Note({ id, title, content }) {
+  const dispatch = useDispatch()
   return (
     <div className="note-container">
       <h1>{title}</h1>
       <p>{content}</p>
-      <DeleteIcon id="delete-icon" onClick={sendNoteId} />
+      <DeleteIcon id="delete-icon" onClick={() => handleDelete(id , dispatch)} />
     </div>
   );
 }

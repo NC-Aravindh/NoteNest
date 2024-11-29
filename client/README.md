@@ -1,8 +1,20 @@
-# React + Vite
+# NoteNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+NoteNest is a modern note-taking app built using React, Redux, and PostgreSQL. It allows users to add and remove notes effortlessly, making it a simple and efficient tool for organizing thoughts and tasks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- Add notes with a title and content.
+- Delete notes to keep your list clean.
+- Persistent storage using PostgreSQL.
+- State management with Redux for seamless updates.
+
+## Technologies Used
+
+- Frontend: React
+- State Management: Redux
+- Backend: Node.js, Express.js
+- Database: PostgreSQL
+- Styling: CSS 
