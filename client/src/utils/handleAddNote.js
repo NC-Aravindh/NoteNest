@@ -8,8 +8,6 @@ async function handleAddNote(title, content, dispatch) {
   //Resetting the input fields after adding the note.
   title.current.value = "";
   content.current.value = "";
-
-  console.log("submit", inputNote);
   try {
     const response = await fetch("http://localhost:5000/add", {
       method: "POST",

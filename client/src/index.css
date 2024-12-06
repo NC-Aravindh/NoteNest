@@ -117,9 +117,64 @@ button {
   color: #94744d;
 }
 
+#edit-icon{
+  color: #94744d;
+  cursor: pointer;
+}
+
 #form-container {
   position: relative;
 }
+
+#overlay-container{
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  z-index: 2;
+}
+
+#editTitle{
+  width: 90%;
+  height: 2.5rem;
+}
+
+#editContent{
+  width: 70%;
+}
+
+
+.editButton{
+  width: 50%;
+  height: 2.5rem;
+  border: none;
+  background-color: #ad895c;
+  border-radius: 1rem;
+  transition: background-color 300ms;
+  cursor: pointer;
+}
+
+.editButton:hover{
+  background-color: #806647;
+}
+
+.editNote-container{
+  border-radius:1rem ;
+  width: 31rem;
+  height: fit-content;
+  background-color: rgb(223, 213, 213);
+  position: fixed;
+  z-index: 3;
+  inset: 0;
+  margin: 0 auto;
+  top: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 5rem;
+  justify-content: start;
+  align-items: center;
+}
+
 
 @media (max-width: 767px) {
   .title {
@@ -145,6 +200,9 @@ button {
     font-size: large;
   }
 }
+
+
+
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .title {

@@ -36,14 +36,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/notes", async (req, res) => {
-  const data = await db.query("SELECT * FROM usernotes");
+  const data = await db.query("SELECT * FROM usernotes ORDER BY id ASC;");
   res.json(data.rows);
 });
 
 app.post("/add", async (req, res) => {
   try {
-    const title = req.body.title;
-    const content = req.body.content;
+    const { title, content } = req.body;
+
     await db.query("INSERT INTO usernotes(title,content) VALUES($1 , $2)", [
       title,
       content,
@@ -62,6 +62,21 @@ app.delete("/deleteNote/:id", async (req, res) => {
     res.status(204).json({ message: "Note deleted successfully" });
   } catch (error) {
     console.error("Error deleting note:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.put("/editNote/:id", async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const { id } = req.params;
+    await db.query(
+      "UPDATE usernotes SET title = CASE WHEN $1 != '' THEN $1 ELSE title END, content = CASE WHEN $2 != '' THEN $2 ELSE content END WHERE id = $3",
+      [title, content, id]
+    );
+    res.status(204).json({ message: "Note updated successfully" });
+  } catch (error) {
+    console.error("Error updating note:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

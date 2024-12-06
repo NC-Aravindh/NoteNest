@@ -4,17 +4,19 @@ import Header from "./components/Header";
 import InputNote from "./components/InputNote";
 import { useSelector } from "react-redux";
 import useFetchNote from "./utils/useFetchNote";
+import EditNote from "./components/EditNote";
 
 function App() {
   useFetchNote(); //Fetch data after component mounts
   const { noteArr } = useSelector((store) => store.note);
+  const { editNote } = useSelector((store) => store.note);
 
   return (
     <div className="App">
       <Header />
       <InputNote />
       <div className="noteBox">
-        {noteArr.length &&
+        {noteArr.length > 0 &&
           noteArr?.map((note) => {
             return (
               <Note
@@ -26,6 +28,12 @@ function App() {
             );
           })}
       </div>
+      {editNote.editEnabled && (
+        <>
+          <div id="overlay-container"> </div>
+          <EditNote />
+        </>
+      )}
     </div>
   );
 }
