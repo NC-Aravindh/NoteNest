@@ -10,14 +10,14 @@ function Note({ id, title, content }) {
     <div className="note-container">
       <h1>{title}</h1>
       <p>{content}</p>
-      <div>
+      <div id="icon-container">
+        <EditIcon id="edit-icon" onClick={() => dispatch(setEditNote(id))}>
+          edit
+        </EditIcon>
         <DeleteIcon
           id="delete-icon"
           onClick={() => handleDelete(id, dispatch)}
         />
-        <EditIcon id="edit-icon" onClick={() => dispatch(setEditNote(id))}>
-          edit
-        </EditIcon>
       </div>
     </div>
   );

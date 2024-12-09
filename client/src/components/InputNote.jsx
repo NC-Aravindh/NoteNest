@@ -25,13 +25,11 @@ function InputNote() {
           placeholder="Take a note..."
           rows={5}
         ></textarea>
-        <button
+        <AddCircleIcon
           onClick={() => handleAddNote(title, content, dispatch)}
           type="submit"
           id="add-icon"
-        >
-          <AddCircleIcon style={{ fontSize: "35" }} />
-        </button>
+        />
       </div>
     </div>
   );

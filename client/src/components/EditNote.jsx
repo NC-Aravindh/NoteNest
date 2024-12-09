@@ -18,8 +18,8 @@ const EditNote = () => {
     <div className="editNote-container">
       {isEditing ? (
         <>
-          <h1>Edit Your Note</h1>
-          <input id="editTitle" placeholder={title} ref={titleInput}></input>
+          <h1 className="editTitle">Edit Your Note</h1>
+          <input id="editPostTitle" placeholder={title} ref={titleInput}></input>
           <textarea
             name={title}
             id="editContent"
@@ -45,7 +45,7 @@ const EditNote = () => {
         </>
       ) : (
         <>
-          <h2 onClick={() => setIsEditing(true)}>{title}</h2>
+          <h2  onClick={() => setIsEditing(true)}>{title}</h2>
           <p onClick={() => setIsEditing(true)}>{content}</p>
           <button className="editButton" onClick={() => setIsEditing(true)}>Edit</button>
         </>

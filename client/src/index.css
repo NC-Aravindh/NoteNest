@@ -73,9 +73,10 @@ button {
   cursor: pointer;
   color: #94744d;
   right: 0.1em;
-  bottom: -1.7em;
+  bottom: 0.01em;
   background: none;
   transition: color 0.3s;
+  font-size: 2rem;
 }
 
 #add-icon:hover {
@@ -96,6 +97,9 @@ button {
   border-radius: 0.4rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 .note-container h1 {
@@ -109,8 +113,12 @@ button {
   padding: 0.5rem;
 }
 
+#icon-container{
+ display: flex;
+ justify-content: space-between;
+}
+
 #delete-icon {
-  position: absolute;
   right: 0.1rem;
   bottom: 0.5rem;
   cursor: pointer;
@@ -118,6 +126,8 @@ button {
 }
 
 #edit-icon{
+  left: 0.1rem;
+  bottom: 0.5rem;
   color: #94744d;
   cursor: pointer;
 }
@@ -133,9 +143,13 @@ button {
   z-index: 2;
 }
 
-#editTitle{
+#editPostTitle{
   width: 90%;
   height: 2.5rem;
+}
+
+.editTitle{
+  font-size: xx-large;
 }
 
 #editContent{
@@ -151,6 +165,7 @@ button {
   border-radius: 1rem;
   transition: background-color 300ms;
   cursor: pointer;
+  color: #e6f4f1;
 }
 
 .editButton:hover{
@@ -170,7 +185,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 5rem;
+  padding: 4rem;
   justify-content: start;
   align-items: center;
 }
@@ -195,15 +210,37 @@ button {
   }
 
   #delete-icon {
-    /* left: 6em; */
     bottom: 0.1em;
     font-size: large;
   }
+  #edit-icon{
+    font-size: large;
+  }
+  .editNote-container{
+    width: 18rem;
+    padding: 1rem;
+  }
+
+  .editTitle{
+    font-size: large;
+  }
+  
+  #editContent{
+    width: 70%;
+  }
+  #add-icon {
+    font-size: 1.5rem;
+    bottom: 0.08em;
+  }
+  #editPostTitle{
+    width: 90%;
+    height: 2.0rem;
+  }
+  
+
 }
 
-
-
-
+/*Tablet View*/
 @media (min-width: 768px) and (max-width: 1023px) {
   .title {
     padding: 1rem;
@@ -216,5 +253,21 @@ button {
   }
   #delete-icon {
     font-size: large;
+  }
+  #edit-icon{
+    font-size: large;
+  }
+  #add-icon {
+    font-size: 1.7rem;
+    bottom: 0.08em;
+  }
+
+  .editTitle{
+    font-size: x-large;
+  }
+
+  .editNote-container{
+    width: 25rem;
+    padding: 1.8rem;
   }
 }
