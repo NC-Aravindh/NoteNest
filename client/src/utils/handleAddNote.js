@@ -9,7 +9,7 @@ async function handleAddNote(title, content, dispatch) {
   title.current.value = "";
   content.current.value = "";
   try {
-    const response = await fetch("http://localhost:5000/add", {
+    const response = await fetch("https://ec2-13-61-12-21.eu-north-1.compute.amazonaws.com:5000/add", {
       method: "POST",
       mode: "cors",
       headers: {

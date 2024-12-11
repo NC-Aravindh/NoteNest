@@ -2,7 +2,7 @@ import fetchNotes from "./fetchNotes";
 
 async function handleEdit(id, titleInput, contentInput, dispatch) {
   try {
-    const response = await fetch("http://localhost:5000/editNote/" + id, {
+    const response = await fetch("https://ec2-13-61-12-21.eu-north-1.compute.amazonaws.com:5000/editNote" + id, {
       method: "PUT",
       mode: "cors",
       headers: {

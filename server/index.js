@@ -2,32 +2,23 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import cors from "cors";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 
+// Use DATABASE_URL from .env or a default fallback
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "NoteNest",
-  password: "1234",
-  port: "5432",
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL.includes("rds.amazonaws.com")
+    ? { rejectUnauthorized: false }
+    : false, // Only apply SSL for cloud databases
 });
 
-db.connect();
 app.use(
   cors({
-    origin: "http://localhost:5173", // use your actual domain name (or localhost), using * is not recommended
+    origin: "https://ec2-13-61-12-21.eu-north-1.compute.amazonaws.com",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
-    allowedHeaders: [
-      "Content-Type",
-      "Origin",
-      "X-Requested-With",
-      "Accept",
-      "x-client-key",
-      "x-client-token",
-      "x-client-secret",
-      "Authorization",
-    ],
     credentials: true,
   })
 );
@@ -81,6 +72,6 @@ app.put("/editNote/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.listen(process.env.PORT_NO, () => {
   console.log("Server is running at Port 5000");
 });
